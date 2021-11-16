@@ -16,9 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from youtube_download import views
+#from short_url import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('youtube/', views.yt_menu),
-    path('youtube/download/', views.yt_download)
+    path('youtube/download/', views.yt_download),
+    path('url/', views.shorturl_main),
+    path('', views.home)
 ]

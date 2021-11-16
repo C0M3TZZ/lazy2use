@@ -1,10 +1,11 @@
 from django import http
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from pytube import YouTube
 
 # Create your views here.
 
+# Youtube Downloader
 
 def yt_menu(request):
     return render(request, 'yt_menu.html')
@@ -28,3 +29,16 @@ def yt_download(request):
         video_url.append({i['qualityLabel']: i['url']})
     return render(request, 'yt_download.html', {'video': video_url, 'audio_track': audio_url, 'title_video': title_url, 'img_url': img_url,
                                                 'yt_author': yt_tile, 'author_link': yt_a_url, 'video_url': var_url})
+
+
+# URL Shortener
+
+def shorturl_main(request):
+    if request.method == 'POST':
+        url_rs = request.form["nm_url"]
+        return url_rs
+    else:
+        return render(request, 'shorturl_main.html')
+
+def home(request):
+    return render(request, 'home.html')
