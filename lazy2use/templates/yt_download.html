@@ -41,12 +41,15 @@
         background-color: #3e8e41;
     }
 </style>
-<h2>Youtube Downloader</h2>
+<h1>Youtube Downloader</h1>
+<h2><a href="{{video_url}}">{{title_video}}</a></h2>
+<img src="{{img_url}}" alt="">
+<p>By <a href="{{author_link}}">{{yt_author}}</a></p>
 
 <div class="dropdown">
     <button class="dropbtn">Video</button>
     <div class="dropdown-content">
-        {% for index in url%}
+        {% for index in video%}
             {% for h,v in index.items %}
                 <a href={{v}}>{{h}}</a>
             {% endfor %}
@@ -57,8 +60,10 @@
 <div class="dropdown">
     <button class="dropbtn">Audio</button>
     <div class="dropdown-content">
-        <a href="#">Link 132</a>
-        <a href="#">Link 232</a>
-        <a href="#">Link 332</a>
+        {% for index in audio_track%}
+            {% for h,v in index.items %}
+                <a href={{v}}>{{h}}</a>
+            {% endfor %}
+        {% endfor %}
     </div>
 </div>
