@@ -15,13 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from youtube_download import views
-#from short_url import views
+from youtube_download import views as yt
+from short_url import views as su
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('youtube/', views.yt_menu),
-    path('youtube/download/', views.yt_download),
-    path('url/', views.shorturl_main),
-    path('', views.home)
+    path('youtube/', yt.yt_menu),
+    path('youtube/download/', yt.yt_download),
+    path('url/', su.shorturl_main),
+    path('url/short_url', su.shorturl_process),
+    path('', yt.home)
 ]
