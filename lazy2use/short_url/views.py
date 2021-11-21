@@ -1,4 +1,5 @@
 from django.shortcuts import render
+<<<<<<< Updated upstream
 from django.http import HttpResponse
 # Create your views here.
 
@@ -9,3 +10,7 @@ def shorturl_process(request):
     var_url = request.GET['nm_url']
     print(var_url)
     return HttpResponse(var_url)
+=======
+
+# Create your views here.
+>>>>>>> Stashed changes

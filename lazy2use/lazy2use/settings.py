@@ -89,11 +89,14 @@ DATABASES = {
             'NAME': 'djangoDB',
             'ENFORCE_SCHEMA': False,
             'CLIENT': {
+<<<<<<< Updated upstream
                 'host': 'mongodb+srv://polawich:XJdCU2Nci8Iyzzyc@lazy2usedb1.pqkay.mongodb.net/test'
+=======
+                'host': 'mongodb+srv://polawich:XJdCU2Nci8Iyzzyc@lazy2usedb1.pqkay.mongodb.net/test?tlsAllowInvalidCertificates=true'
+>>>>>>> Stashed changes
             }  
         }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
