@@ -89,7 +89,7 @@ DATABASES = {
             'NAME': 'djangoDB',
             'ENFORCE_SCHEMA': False,
             'CLIENT': {
-                'host': 'mongodb+srv://polawich:XJdCU2Nci8Iyzzyc@lazy2usedb1.pqkay.mongodb.net/test'
+                'host': 'mongodb+srv://polawich:XJdCU2Nci8Iyzzyc@lazy2usedb1.pqkay.mongodb.net/test?tlsAllowInvalidCertificates=true'
             }  
         }
 }
