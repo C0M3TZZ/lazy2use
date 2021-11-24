@@ -87,7 +87,7 @@ DATABASES = {
         'default': {
             'ENGINE': 'djongo',
             'NAME': 'djangoDB',
-            'ENFORCE_SCHEMA': False,
+            'ENFORCE_SCHEMA': True,
             'CLIENT': {
                 'host': 'mongodb+srv://polawich:XJdCU2Nci8Iyzzyc@lazy2usedb1.pqkay.mongodb.net/test?tlsAllowInvalidCertificates=true'
             }  

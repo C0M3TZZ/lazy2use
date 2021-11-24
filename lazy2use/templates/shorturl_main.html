@@ -11,12 +11,12 @@
          {% block content %}
          <div class="container-fluid"></div>
          <h1>Lazy2Use URL Shortener</h1>
-            <form action="short_url", method="GET">
-                <!-- {% csrf_token %} -->
+            <form action="short_url", method="POST">
+                -- {% csrf_token %} -->
                 <label for="url">Enter an URL:</label>
                 <input type="url" name="nm_url" id="url"
                     placeholder="https://example.com" size="50"
-                    required>
+                required>
                 <br>
                 <input type="submit" value="submit" class="btn btn-primary">
             </form>
