@@ -6,7 +6,7 @@ def shorturl_main(request):
     return render(request, 'shorturl_main.html')
 
 def shorturl_process(request):
-    var_url = request.GET['nm_url']
+    var_url = request.POST['nm_url']
     print(var_url)
     return HttpResponse(var_url)
 
