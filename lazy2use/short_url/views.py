@@ -21,8 +21,8 @@ def shorten_url():
             return rand_letters
 
 def shorturl_process(request):
-    var_url = request.POST['nm_url']
-    if var_url == request.POST['nm_url']:
+    if request.method == "POST":
+        var_url = request.POST['nm_url']
         found_url = db.objects.filter(lurl=var_url).first() # store in databases lurl 
         if found_url:
             return f"{found_url.surl}"
