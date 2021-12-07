@@ -2,7 +2,9 @@ from django import urls
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from .models import urldb as db
-import pymongo
+import string
+import random
+#import pymongo
 # Create your views here.
 
 def shorturl_main(request):
@@ -10,7 +12,13 @@ def shorturl_main(request):
     return render(request, 'shorturl_main.html')
 
 def shorten_url():
-    return "abc"
+    letters = string.ascii_lowercase + string.ascii_uppercase
+    while True:
+        rand_letters = random.choices(letters, k=3)
+        rand_letters = "".join(rand_letters)
+        short_url = db.objects.filter(surl=rand_letters).first()
+        if not short_url:
+            return rand_letters
 
 def shorturl_process(request):
     var_url = request.POST['nm_url']
@@ -22,7 +30,7 @@ def shorturl_process(request):
             short_url = shorten_url()
             new_url = db(var_url, short_url)
             # fix insert mongodb https://www.youtube.com/watch?v=I17uA1sVQ2g
-            db.insert_one(new_url)
+            db.save(new_url)
             return shorten_url
     else:
         return render(request, 'shorturl_main.html')
