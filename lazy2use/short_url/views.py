@@ -11,7 +11,7 @@ def shorturl_main(request):
     db.objects.all()
     return render(request, 'shorturl_main.html')
 
-def shorten_url():
+def shorten_url(): #url genarator
     letters = string.ascii_lowercase + string.ascii_uppercase
     while True:
         rand_letters = random.choices(letters, k=3)
@@ -20,7 +20,7 @@ def shorten_url():
         if not short_url:
             return rand_letters
 
-def shorturl_process(request):
+def shorturl_process(request): #url_process
     if request.method == "POST":
         var_url = request.POST['nm_url']
         found_url = db.objects.filter(lurl=var_url).first() # store in databases lurl 
