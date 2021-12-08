@@ -1,6 +1,6 @@
 from django import urls
 from django.shortcuts import redirect, render
-from django.http import HttpResponse
+from django.http import HttpResponse, request
 from .models import urldb as db
 import string
 import random
@@ -28,12 +28,17 @@ def shorturl_process(request): #url_process
             return f"{found_url.surl}"
         else:
             short_url = shorten_url()
-            new_url = db(var_url, short_url)
+            new_url = db(lurl=var_url, surl=short_url)
             # fix insert mongodb https://www.youtube.com/watch?v=I17uA1sVQ2g
             db.save(new_url)
             return shorten_url
     else:
         return render(request, 'shorturl_main.html')
-    # var_url = request.POST['nm_url']
-    # print(var_url)
-    # return HttpResponse(var_url)
+        #var_url = request.POST['nm_url']
+        # var_url = request.POST(shorten_url)
+        # print(var_url)
+        # return HttpResponse(var_url)
+        #return HttpResponse['nm_url']
+
+def display_short_url(request, url):
+    return render(request, 'short_rs.html', {'short_url_display':url})

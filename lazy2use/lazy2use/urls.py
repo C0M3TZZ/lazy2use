@@ -26,5 +26,6 @@ urlpatterns = [
     path('', yt.home),
     #shorturl
     path('url/', su.shorturl_main),
-    path('url/short_url', su.shorturl_process)
+    path('url/short_url', su.shorturl_process),
+    path('url/display/<url>', su.display_short_url)
 ]
