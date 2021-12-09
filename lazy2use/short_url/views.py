@@ -1,6 +1,9 @@
 from django import urls
+from . import views
+from django.conf.urls import url
 from django.shortcuts import redirect, render
 from django.http import HttpResponse, request
+from django.urls import path
 from .models import urldb as db
 import string
 import random
@@ -23,15 +26,15 @@ def shorten_url(): #url genarator
 def shorturl_process(request): #url_process
     if request.method == "POST":
         var_url = request.POST['nm_url']
-        found_url = db.objects.filter(lurl=var_url).first() # store in databases lurl 
+        found_url = db.objects.filter(lurl=var_url).first() # databases lurl 
         if found_url:
-            return f"{found_url.surl}"
+            return redirect('display_short_url', url=found_url.surl)
         else:
             short_url = shorten_url()
             new_url = db(lurl=var_url, surl=short_url)
             # fix insert mongodb https://www.youtube.com/watch?v=I17uA1sVQ2g
             db.save(new_url)
-            return shorten_url
+            return redirect('display_short_url', url=short_url)
     else:
         return render(request, 'shorturl_main.html')
         #var_url = request.POST['nm_url']
