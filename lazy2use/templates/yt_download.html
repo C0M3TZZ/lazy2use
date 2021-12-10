@@ -51,7 +51,7 @@
     <div class="dropdown-content">
         {% for index in video%}
             {% for h,v in index.items %}
-                <a href={{v}}>{{h}}</a>
+                <a href="/download/mp4/?name={{video_url}}&url={{v}}">{{h}}</a>
             {% endfor %}
         {% endfor %}
     </div>
@@ -62,7 +62,7 @@
     <div class="dropdown-content">
         {% for index in audio_track%}
             {% for h,v in index.items %}
-                <a href={{v}}>{{h}}</a>
+                <a href="/download/mp3/?name={{video_url}}&url={{v}}">{{h}}</a>
             {% endfor %}
         {% endfor %}
     </div>

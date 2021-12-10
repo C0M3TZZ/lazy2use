@@ -23,6 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('youtube/', yt.yt_menu),
     path('youtube/download/', yt.yt_download),
+    path('download/mp4/', yt.yt_mp4),
+    path('download/mp3/', yt.yt_mp3),
     path('', yt.home),
     #shorturl
     path('url/', su.shorturl_main),

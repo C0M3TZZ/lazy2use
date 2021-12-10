@@ -1,6 +1,9 @@
+import urllib
 from django import http
 from django.shortcuts import render
 from pytube import YouTube
+from django.http import FileResponse
+import requests
 
 # Create your views here.
 
@@ -12,6 +15,7 @@ def yt_menu(request):
 
 def yt_download(request):
     var_url = request.GET['url']
+
     stream_data = YouTube(var_url)
     img_url = stream_data.thumbnail_url
     title_url = stream_data.title
@@ -23,12 +27,28 @@ def yt_download(request):
     for i in stream_data.streaming_data['adaptiveFormats']:
         all_video_quarry[i['itag']] = i['url']
     for i in stream_data.streams.filter(only_audio=True):
-        audio_url.append({i.abr: all_video_quarry[i.itag]})
+        audio_url.append({i.abr: urllib.parse.quote_plus(all_video_quarry[i.itag])})
     for i in stream_data.streaming_data["formats"][::-1]:
-        video_url.append({i['qualityLabel']: i['url']})
+        video_url.append({i['qualityLabel']: urllib.parse.quote_plus(i['url'])})
     return render(request, 'yt_download.html', {'video': video_url, 'audio_track': audio_url, 'title_video': title_url, 'img_url': img_url,
                                                 'yt_author': yt_tile, 'author_link': yt_a_url, 'video_url': var_url})
 
+def yt_mp4(request):
+    var_url = http.HttpResponse(request.GET.get('url')).content.decode()
+    var_name = http.HttpResponse(request.GET.get('name')).content.decode()
+    fr = FileResponse(requests.get(var_url, allow_redirects= True))
+    fr['Content-Type'] = 'video/mp4'
+    fr['Content-Disposition'] = 'attachment; filename=' + var_name.split("?v=")[1] + ".mp4"
+    return fr
+
+def yt_mp3(request):
+    var_url = http.HttpResponse(request.GET.get('url')).content.decode()
+    var_name = http.HttpResponse(request.GET.get('name')).content.decode()
+    print(var_name)
+    fr = FileResponse(requests.get(var_url, allow_redirects= True))
+    fr['Content-Type'] = 'audio/webm'
+    fr['Content-Disposition'] = 'attachment; filename=' + var_name.split("?v=")[1] + ".weba"
+    return fr
 
 def home(request):
     return render(request, 'home.html')
