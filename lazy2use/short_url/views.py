@@ -28,13 +28,13 @@ def shorturl_process(request): #url_process
         var_url = request.POST['nm_url']
         found_url = db.objects.filter(lurl=var_url).first() # databases lurl 
         if found_url:
-            return redirect('display_short_url', url=found_url.surl)
+            return redirect('displayshorturl', url=found_url.surl)
         else:
             short_url = shorten_url()
             new_url = db(lurl=var_url, surl=short_url)
             # fix insert mongodb https://www.youtube.com/watch?v=I17uA1sVQ2g
             db.save(new_url)
-            return redirect('display_short_url', url=short_url)
+            return redirect('displayshorturl', url=short_url)
     else:
         return render(request, 'shorturl_main.html')
         #var_url = request.POST['nm_url']
@@ -45,3 +45,10 @@ def shorturl_process(request): #url_process
 
 def display_short_url(request, url):
     return render(request, 'short_rs.html', {'short_url_display':url})
+
+def redirection(request, short_url):
+    long_url = db.objects.filter(surl=short_url).first()
+    if long_url:
+        return redirect(long_url.lurl)
+    else:
+        return render(request, '404.html')

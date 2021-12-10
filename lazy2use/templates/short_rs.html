@@ -9,10 +9,21 @@
 <body>
     {% extends 'layout.html'%}
          {% block content %}
+         <div class="position-absolute top-50 start-50 translate-middle">
          <div class="container-fluid"></div>
          <h1>Lazy2Use URL Result</h1>
-         <h1>http://127.0.0.1:8000/{{short_url_display}}</h1>
-         <a href="http://127.0.0.1:8000/">BACK TO HOME</a>
+         <input class="form-control" value="http://127.0.0.1:8000/{{short_url_display}}" id="myOutput" size="70">
+         <div class="col-auto my-1">
+         <button onclick="myFunction()" class="btn btn-primary">Copy URL</button>
+         </div>
+        <script>
+        function myFunction() {
+            var copyText = document.getElementById("myOutput");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); /* For mobile devices */
+            navigator.clipboard.writeText(copyText.value);
+        }
+        </script>
          {% endblock %}
 </body>
 </html>

@@ -27,5 +27,6 @@ urlpatterns = [
     #shorturl
     path('url/', su.shorturl_main),
     path('url/short_url', su.shorturl_process),
-    path('url/display/<url>', su.display_short_url)
+    path('url/result/<url>', su.display_short_url,name='displayshorturl'),
+    path('<short_url>/', su.redirection)
 ]
