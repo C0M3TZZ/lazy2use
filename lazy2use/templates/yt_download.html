@@ -49,6 +49,9 @@
 <div class="dropdown">
     <button class="dropbtn">Video</button>
     <div class="dropdown-content">
+        {% for h,v in highdev.items %}
+            <a href="{{v}}">{{h}}</a>
+        {% endfor %}
         {% for index in video%}
             {% for h,v in index.items %}
                 <a href="/download/mp4/?name={{video_url}}&url={{v}}">{{h}}</a>
