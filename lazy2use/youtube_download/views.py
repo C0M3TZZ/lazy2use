@@ -71,17 +71,20 @@ def yt_mp3(request):
 
 
 def yt_highdefi(request):
-    return HttpResponse(pathlib.Path().resolve())
-    # var_url = http.HttpResponse(request.GET.get('url')).content.decode()
-    # var_qulity = http.HttpResponse(request.GET.get('qulity')).content.decode()
-    # var_fps = http.HttpResponse(request.GET.get('fps')).content.decode()
-    # var_clip = YouTube(var_url)
-    # var_video_path = "youtube_download/download/" + \
-    #     var_clip.video_id + "/" + var_clip.video_id + ".webm"
-    # var_audio_path = "youtube_download/download/" + \
-    #     var_clip.video_id + "/" + var_clip.video_id + ".weba"
-    # var_export = "youtube_download/download/" + var_clip.video_id + \
-    #     "/" + var_clip.video_id+"_"+var_qulity+".mp4"
+    var_url = http.HttpResponse(request.GET.get('url')).content.decode()
+    var_qulity = http.HttpResponse(request.GET.get('qulity')).content.decode()
+    var_fps = http.HttpResponse(request.GET.get('fps')).content.decode()
+    var_clip = YouTube(var_url)
+    var_video_path = "youtube_download/download/" + \
+        var_clip.video_id + "/" + var_clip.video_id + ".webm"
+    var_audio_path = "youtube_download/download/" + \
+        var_clip.video_id + "/" + var_clip.video_id + ".weba"
+    var_export = "youtube_download/download/" + var_clip.video_id + \
+        "/" + var_clip.video_id+"_"+var_qulity+".mp4"
+    cmd = 'ffmpeg -y -i ' + var_video_path + ' -r ' + var_fps + ' -i ' + var_audio_path + \
+        ' -strict -2 -filter:a aresample=async=1 -c:a flac -c:v copy ' + var_export
+    return HttpResponse(pathlib.Path().resolve() + cmd)
+
     # if os.path.exists(var_export) == False:
     #     var_clip.streams.filter(resolution=var_qulity.replace("p60", 'p')).first().download(
     #         'youtube_download/download/' + var_clip.video_id, var_clip.video_id + '.webm')
