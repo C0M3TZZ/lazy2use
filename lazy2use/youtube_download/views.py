@@ -45,7 +45,7 @@ def yt_download(request):
         elif i['qualityLabel'] == "720p":
             high_dev.pop('720p')
             break
-        elif i['qualityLabel'] == "480":
+        elif i['qualityLabel'] == "480p":
             high_dev.pop('480')
             break
     return render(request, 'yt_download.html', {'video': video_url, 'audio_track': audio_url, 'title_video': title_url, 'img_url': img_url,
