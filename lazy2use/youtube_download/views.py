@@ -90,7 +90,7 @@ def yt_highdefi(request):
                                                     var_clip.video_id, var_clip.video_id + '.weba')
         cmd = './ffmpeg -y -i ' + var_video_path + ' -r ' + var_fps + ' -i ' + var_audio_path + \
             ' -strict -2 -filter:a aresample=async=1 -c:a flac -c:v copy ' + var_export
-        subprocess.call(cmd, shell=False)
+        subprocess.call(cmd, shell=True)
     if os.path.exists(var_video_path):
         os.remove(var_video_path)
     if os.path.exists(var_audio_path):
