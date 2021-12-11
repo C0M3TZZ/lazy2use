@@ -84,6 +84,7 @@ def yt_highdefi(request):
     cmd = 'ffmpeg -y -i ' + var_video_path + ' -r ' + var_fps + ' -i ' + var_audio_path + \
         ' -strict -2 -filter:a aresample=async=1 -c:a flac -c:v copy ' + var_export
     print(pathlib.Path().resolve())
+    subprocess.call("ls", shell=True)
     if os.path.exists(var_export) == False:
         var_clip.streams.filter(resolution=var_qulity.replace("p60", 'p')).first().download(
             'youtube_download/download/' + var_clip.video_id, var_clip.video_id + '.webm')
