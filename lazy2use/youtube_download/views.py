@@ -12,6 +12,7 @@ import os
 
 # Youtube Downloader
 
+
 def yt_menu(request):
     return render(request, 'yt_menu.html')
 
@@ -30,48 +31,60 @@ def yt_download(request):
     for i in stream_data.streaming_data['adaptiveFormats']:
         all_video_quarry[i['itag']] = i['url']
     for i in stream_data.streams.filter(only_audio=True):
-        audio_url.append({i.abr: urllib.parse.quote_plus(all_video_quarry[i.itag])})
+        audio_url.append(
+            {i.abr: urllib.parse.quote_plus(all_video_quarry[i.itag])})
     for i in stream_data.streaming_data["formats"][::-1]:
-        video_url.append({i['qualityLabel']: urllib.parse.quote_plus(i['url'])})
+        video_url.append(
+            {i['qualityLabel']: urllib.parse.quote_plus(i['url'])})
     return render(request, 'yt_download.html', {'video': video_url, 'audio_track': audio_url, 'title_video': title_url, 'img_url': img_url,
                                                 'yt_author': yt_tile, 'author_link': yt_a_url, 'video_url': var_url})
+
 
 def yt_mp4(request):
     var_url = http.HttpResponse(request.GET.get('url')).content.decode()
     var_name = http.HttpResponse(request.GET.get('name')).content.decode()
-    fr = FileResponse(requests.get(var_url, allow_redirects= True))
+    fr = FileResponse(requests.get(var_url, allow_redirects=True))
     fr['Content-Type'] = 'video/mp4'
-    fr['Content-Disposition'] = 'attachment; filename=' + var_name.split("?v=")[1] + ".mp4"
+    fr['Content-Disposition'] = 'attachment; filename=' + \
+        var_name.split("?v=")[1] + ".mp4"
     return fr
+
 
 def yt_mp3(request):
     var_url = http.HttpResponse(request.GET.get('url')).content.decode()
     var_name = http.HttpResponse(request.GET.get('name')).content.decode()
     print(var_name)
-    fr = FileResponse(requests.get(var_url, allow_redirects= True))
+    fr = FileResponse(requests.get(var_url, allow_redirects=True))
     fr['Content-Type'] = 'audio/webm'
-    fr['Content-Disposition'] = 'attachment; filename=' + var_name.split("?v=")[1] + ".weba"
+    fr['Content-Disposition'] = 'attachment; filename=' + \
+        var_name.split("?v=")[1] + ".weba"
     return fr
+
 
 def yt_highdefi(request):
     var_url = http.HttpResponse(request.GET.get('url')).content.decode()
     var_qulity = http.HttpResponse(request.GET.get('qulity')).content.decode()
     var_clip = YouTube(var_url)
-    var_video_path = "youtube_download/download/" + var_clip.video_id + "/" + var_clip.video_id + ".webm"
-    var_audio_path = "youtube_download/download/" + var_clip.video_id + "/" + var_clip.video_id + ".weba"
-    var_export = "youtube_download/download/" + var_clip.video_id + "/" + var_clip.video_id+"_"+var_qulity+".mp4"
+    var_video_path = "youtube_download/download/" + \
+        var_clip.video_id + "/" + var_clip.video_id + ".webm"
+    var_audio_path = "youtube_download/download/" + \
+        var_clip.video_id + "/" + var_clip.video_id + ".weba"
+    var_export = "youtube_download/download/" + var_clip.video_id + \
+        "/" + var_clip.video_id+"_"+var_qulity+".mp4"
     if not os.path.exists(var_export):
-        var_clip.streams.filter(resolution=var_qulity).first().download('youtube_download/download/' + var_clip.video_id, var_clip.video_id + '.webm')
-        var_clip.streams.get_audio_only().download('youtube_download/download/' + var_clip.video_id,var_clip.video_id + '.weba')
-        cmd = 'ffmpeg -y -i ' + var_video_path + ' -r 30 -i ' + var_audio_path + ' -strict -2 -filter:a aresample=async=1 -c:a flac -c:v copy ' + var_export
+        var_clip.streams.filter(resolution=var_qulity).first().download(
+            'youtube_download/download/' + var_clip.video_id, var_clip.video_id + '.webm')
+        var_clip.streams.get_audio_only().download('youtube_download/download/' +
+                                                   var_clip.video_id, var_clip.video_id + '.weba')
+        cmd = 'ffmpeg -y -i ' + var_video_path + ' -r 30 -i ' + var_audio_path + \
+            ' -strict -2 -filter:a aresample=async=1 -c:a flac -c:v copy ' + var_export
         subprocess.call(cmd, shell=False)
-    print('Muxing Done')
     if os.path.exists(var_video_path):
         os.remove(var_video_path)
     if os.path.exists(var_audio_path):
         os.remove(var_audio_path)
-    fr = FileResponse(open(var_export,'rb'))
+    fr = FileResponse(open(var_export, 'rb'))
     fr['Content-Type'] = 'video/mp4'
-    fr['Content-Disposition'] = 'attachment; filename=' + var_clip.video_id+"_"+var_qulity+".mp4"
+    fr['Content-Disposition'] = 'attachment; filename=' + \
+        var_clip.video_id+"_"+var_qulity+".mp4"
     return fr
-
