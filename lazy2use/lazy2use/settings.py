@@ -25,7 +25,7 @@ SECRET_KEY = '0*u+08xhumvtid=fbpif&d(8%a1lfg_6n$7(w35qe1@vc3h61_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
