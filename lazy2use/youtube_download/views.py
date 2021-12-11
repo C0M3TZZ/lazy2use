@@ -7,6 +7,7 @@ from django.http import FileResponse
 import requests
 import subprocess
 import os
+import pathlib
 
 # Create your views here.
 
@@ -97,3 +98,6 @@ def yt_highdefi(request):
     fr['Content-Disposition'] = 'attachment; filename=' + \
         var_clip.video_id+"_"+var_qulity+".mp4"
     return fr
+
+def get_path(request):
+    return HttpResponse(pathlib.Path().resolve())
