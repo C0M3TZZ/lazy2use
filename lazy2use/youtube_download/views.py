@@ -81,8 +81,6 @@ def yt_highdefi(request):
         var_clip.video_id + "/" + var_clip.video_id + ".weba"
     var_export = "/youtube_download/download/" + var_clip.video_id + \
         "/" + var_clip.video_id+"_"+var_qulity+".mp4"
-    cmd = './ffmpeg -y -i ' + var_video_path + ' -r ' + var_fps + ' -i ' + var_audio_path + \
-        ' -strict -2 -filter:a aresample=async=1 -c:a flac -c:v copy ' + var_export
     print(pathlib.Path().resolve())
     subprocess.call("ls", shell=True)
     if os.path.exists(var_export) == False:
@@ -90,7 +88,7 @@ def yt_highdefi(request):
             'youtube_download/download/' + var_clip.video_id, var_clip.video_id + '.webm')
         var_clip.streams.get_audio_only().download('youtube_download/download/' +
                                                     var_clip.video_id, var_clip.video_id + '.weba')
-        cmd = 'ffmpeg -y -i ' + var_video_path + ' -r ' + var_fps + ' -i ' + var_audio_path + \
+        cmd = './ffmpeg -y -i ' + var_video_path + ' -r ' + var_fps + ' -i ' + var_audio_path + \
             ' -strict -2 -filter:a aresample=async=1 -c:a flac -c:v copy ' + var_export
         subprocess.call(cmd, shell=False)
     if os.path.exists(var_video_path):
