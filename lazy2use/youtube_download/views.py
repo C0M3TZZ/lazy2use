@@ -73,6 +73,10 @@ def yt_highdefi(request):
     fr['Content-Type'] = 'video/mp4'
     fr['Content-Disposition'] = 'attachment; filename=' + var_clip.video_id+"_"+var_qulity+".mp4"
     return fr
+<<<<<<< Updated upstream
+=======
+    
+>>>>>>> Stashed changes
 
 def home(request):
     return render(request, 'home.html')

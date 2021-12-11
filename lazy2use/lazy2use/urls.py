@@ -27,6 +27,7 @@ urlpatterns = [
     path('download/mp3/', yt.yt_mp3),
     path('', yt.home),
     path('about_us', yt.about_us),
+    path('beta/', yt.yt_highdefi),
     #shorturl
     path('url/', su.shorturl_main),
     path('url/short_url', su.shorturl_process),
