@@ -9,9 +9,9 @@ jobs:
     - name: SSH Remote Commands
       uses: appleboy/ssh-action@v0.1.4
       with:
-        host: ${{ secrets.HOSTIP1_JAVSUU }}
+        host: ${{ secrets.HOSTIP1_LAZY2USE }}
         username: ${{ secrets.HOST_USERNAME }}
-        key: ${{ secrets.RUNNER_JUSAVSERVERKEY }}
+        key: ${{ secrets.RUNNER_LAZY2USEKEY }}
         port: ${{ secrets.HOST_PORT }}
         script: |
           cd lazy2use
