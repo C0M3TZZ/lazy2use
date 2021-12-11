@@ -87,7 +87,8 @@ def yt_highdefi(request):
     print(str(pathlib.Path().resolve()))
     subprocess.call("ls", shell=True)
     if os.path.exists(var_export) == False:
-        var_clip.streams.filter(resolution=var_qulity.replace("p60", 'p')).first().download(
+        var_real_q = var_qulity.split("p")
+        var_clip.streams.filter(resolution=var_real_q[0] + "p").first().download(
             'youtube_download/download/' + var_clip.video_id, var_clip.video_id + '.webm')
         var_clip.streams.get_audio_only().download('youtube_download/download/' +
                                                     var_clip.video_id, var_clip.video_id + '.weba')
