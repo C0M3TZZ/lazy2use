@@ -17,4 +17,4 @@ jobs:
           cd lazy2use
           git pull origin main
           cd lazy2use
-          screen -d -m python manage.py runserver 0.0.0.0:8000
+          python manage.py runserver 0.0.0.0:8000
