@@ -15,4 +15,6 @@ jobs:
         port: ${{ secrets.HOST_PORT }}
         script: |
           cd lazy2use
-          mkdir test
+          git pull origin main
+          sudo systemctl restart django-lazy2use.service
+          sudo systemctl status django-lazy2use.service
