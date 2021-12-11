@@ -3,7 +3,7 @@ from django import http
 from django.shortcuts import render
 from pytube import YouTube
 from django.http import FileResponse
-import requests
+#import requests
 
 # Create your views here.
 
@@ -52,3 +52,6 @@ def yt_mp3(request):
 
 def home(request):
     return render(request, 'home.html')
+
+def about_us(request):
+    return render(request, 'about_us.html')
