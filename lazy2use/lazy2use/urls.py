@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from youtube_download import views as yt
 from short_url import views as su
+from lazy2use import views as lazy2use_main
 
 urlpatterns = [
     #youtube
@@ -25,8 +26,9 @@ urlpatterns = [
     path('youtube/download/', yt.yt_download),
     path('download/mp4/', yt.yt_mp4),
     path('download/mp3/', yt.yt_mp3),
-    path('', yt.home),
-    path('about_us', yt.about_us),
+    path('', lazy2use_main.home),
+    path('about_us', lazy2use_main.about_us),
+    path('beta/', yt.yt_highdefi),
     #shorturl
     path('url/', su.shorturl_main),
     path('url/short_url', su.shorturl_process),
