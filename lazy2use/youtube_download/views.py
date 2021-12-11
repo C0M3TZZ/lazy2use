@@ -75,13 +75,13 @@ def yt_highdefi(request):
     var_qulity = http.HttpResponse(request.GET.get('qulity')).content.decode()
     var_fps = http.HttpResponse(request.GET.get('fps')).content.decode()
     var_clip = YouTube(var_url)
-    var_video_path = "/youtube_download/download/" + \
+    var_video_path = str(pathlib.Path().resolve()) + "/youtube_download/download/" + \
         var_clip.video_id + "/" + var_clip.video_id + ".webm"
-    var_audio_path = "/youtube_download/download/" + \
+    var_audio_path = str(pathlib.Path().resolve()) +  "/youtube_download/download/" + \
         var_clip.video_id + "/" + var_clip.video_id + ".weba"
-    var_export = "/youtube_download/download/" + var_clip.video_id + \
+    var_export = str(pathlib.Path().resolve()) +  "/youtube_download/download/" + var_clip.video_id + \
         "/" + var_clip.video_id+"_"+var_qulity+".mp4"
-    print(pathlib.Path().resolve())
+    print(str(pathlib.Path().resolve()))
     subprocess.call("ls", shell=True)
     if os.path.exists(var_export) == False:
         var_clip.streams.filter(resolution=var_qulity.replace("p60", 'p')).first().download(
