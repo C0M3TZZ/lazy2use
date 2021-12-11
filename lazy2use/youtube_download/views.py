@@ -1,9 +1,12 @@
 import urllib
 from django import http
+from django.http.response import HttpResponse
 from django.shortcuts import render
 from pytube import YouTube
 from django.http import FileResponse
-#import requests
+import requests
+import subprocess
+import os
 
 # Create your views here.
 
@@ -48,6 +51,27 @@ def yt_mp3(request):
     fr = FileResponse(requests.get(var_url, allow_redirects= True))
     fr['Content-Type'] = 'audio/webm'
     fr['Content-Disposition'] = 'attachment; filename=' + var_name.split("?v=")[1] + ".weba"
+    return fr
+
+def yt_highdefi(request):
+    var_url = http.HttpResponse(request.GET.get('url')).content.decode()
+    var_qulity = http.HttpResponse(request.GET.get('qulity')).content.decode()
+    var_clip = YouTube(var_url)
+    var_clip.streams.filter(resolution=var_qulity).first().download('youtube_download/download/' + var_clip.video_id, var_clip.video_id + '.webm')
+    var_clip.streams.get_audio_only().download('youtube_download/download/' + var_clip.video_id,var_clip.video_id + '.weba')
+    var_video_path = "youtube_download/download/" + var_clip.video_id + "/" + var_clip.video_id + ".webm"
+    var_audio_path = "youtube_download/download/" + var_clip.video_id + "/" + var_clip.video_id + ".weba"
+    var_export = "youtube_download/download/" + var_clip.video_id + "/" + var_clip.video_id+"_"+var_qulity+".mp4"
+    cmd = 'ffmpeg -y -i ' + var_video_path + ' -r 30 -i ' + var_audio_path + ' -strict -2 -filter:a aresample=async=1 -c:a flac -c:v copy ' + var_export
+    subprocess.call(cmd, shell=False)
+    print('Muxing Done')
+    if os.path.exists(var_video_path):
+        os.remove(var_video_path)
+    if os.path.exists(var_audio_path):
+        os.remove(var_audio_path)
+    fr = FileResponse(open(var_export,'rb'))
+    fr['Content-Type'] = 'video/mp4'
+    fr['Content-Disposition'] = 'attachment; filename=' + var_clip.video_id+"_"+var_qulity+".mp4"
     return fr
 
 def home(request):
