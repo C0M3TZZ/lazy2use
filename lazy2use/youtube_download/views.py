@@ -3,7 +3,7 @@ from django import http
 from django.shortcuts import render
 from pytube import YouTube
 from django.http import FileResponse
-import requests
+#import requests
 
 # Create your views here.
 
