@@ -16,10 +16,5 @@ jobs:
         script: |
           cd lazy2use
           git pull origin main
-<<<<<<< HEAD
-          cd lazy2use
-          python3 manage.py runserver 0.0.0.0:8000
-=======
           sudo systemctl restart django-lazy2use.service
           sudo systemctl status django-lazy2use.service
->>>>>>> 458f545274255c96bc5dc19494f969427606b1dd
