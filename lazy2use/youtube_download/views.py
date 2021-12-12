@@ -4,7 +4,7 @@ from django.http.response import HttpResponse
 from django.shortcuts import render
 from pytube import YouTube
 from django.http import FileResponse
-#import requests
+import requests
 import subprocess
 import os
 import pathlib
@@ -15,7 +15,7 @@ import pathlib
 
 
 def yt_menu(request):
-    return render(request, 'yt_menu.html')
+    return render(request, 'ytd_menu.html')
 
 
 def yt_download(request):
@@ -48,7 +48,7 @@ def yt_download(request):
         elif i['qualityLabel'] == "480p":
             high_dev.pop('480p')
             break
-    return render(request, 'yt_download.html', {'video': video_url, 'audio_track': audio_url, 'title_video': title_url, 'img_url': img_url,
+    return render(request, 'ytd_download.html', {'video': video_url, 'audio_track': audio_url, 'title_video': title_url, 'img_url': img_url,
                                                 'yt_author': yt_tile, 'author_link': yt_a_url, 'video_url': stream_data.watch_url, "highdev": high_dev})
 
 

@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Youtube Downloader</title>
+    <link rel="stylesheet" href="{% static '/youtube_download/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/youtube_download/css/styles.css' %}">
+</head>
+
+<body style="text-align: right;">
+    <nav class="navbar navbar-light navbar-expand-md" style="color: #58bcdc;background: #58bcdc;">
+        <div class="container-fluid"><a class="navbar-brand" href="#" style="color: rgba(255,255,255,0.9);font-weight: bold;">Youtube Downloader</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1" style="text-align: right;border-color: rgb(255,255,255);width: 500px;">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link active" href="#" style="color: rgb(0,0,0);text-align: left;background: #98def5;margin-right: 5px;border-radius: 15px;margin-left: 5px;font-weight: bold;">URL Shorter</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" style="color: rgb(0,0,0);text-align: left;background: #ffffff;margin-left: 5px;border-radius: 15px;margin-right: 5px;font-weight: bold;">About me</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h1 style="margin: 0px 0px 8px;text-align: center;margin-top: 8px;font-size: 25px;"><a href="{{video_url}}">{{title_video}}</a></h1><img class="d-flex justify-content-center" style="text-align: center;margin: 0px 10px 0px;margin-right: auto;margin-left: auto;height: auto;width: 350px;min-width: 350px;">
+    <div class="container d-flex d-md-flex justify-content-center justify-content-md-center"><img class="d-flex justify-content-center" style="text-align: left;max-width: 1000px;max-height: 1000px;" src="{{img_url}}"></div>
+    <p style="text-align: center;width: auto;margin-bottom: 10px;margin-top: 10px;">By : <a href="{{author_link}}">{{yt_author}}</a></p>
+    <div class="row" style="margin: 0px;">
+        <div class="col" style="text-align: center;">
+            <div class="dropdown" style="text-align: right;"><button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="width: 120px;">MP4</button>
+                <div class="dropdown-menu">
+                {% for h,v in highdev.items %}
+                    <a class="dropdown-item" href="{{v}}">{{h}}</a>
+                {% endfor %}
+                {% for index in video%}
+                    {% for h,v in index.items %}
+                        <a class="dropdown-item" href="/download/mp4/?name={{video_url}}&url={{v}}">{{h}}</a>
+                    {% endfor %}
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="dropdown" style="text-align: left;"><button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="text-align: center;width: 120px;padding: 10;">MP3</button>
+                <div class="dropdown-menu">
+                    {% for index in audio_track%}
+                        {% for h,v in index.items %}
+                            <a class="dropdown-item" href="/download/mp3/?name={{video_url}}&url={{v}}">{{h}}</a>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static '/youtube_download/bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
+
+</html>
