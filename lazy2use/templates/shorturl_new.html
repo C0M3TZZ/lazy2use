@@ -18,11 +18,10 @@
                 style="font-weight: bold;color: rgb(255,255,255); font-size: 50px;">LAZY2USE</a>
             <ul class="navbar-nav">
                 <li class="nav-item hvr-sink" style="border-radius: 15px;"><a class="nav-link active" href="/youtube"
-                        style="margin-left: 5px;margin-right: 5px;color: rgb(0,0,0);background: #e3f8ff;border-radius: 15px;font-weight: bold; font-size: 25px;width: 250px;text-align: center;">Video
+                        style="margin-left: 5px;margin-right: 5px;color: rgb(0,0,0);background: #e3f8ff;border-radius: 15px;font-weight: bold; font-size: 25px;width: 275px;text-align: center;">Youtube
                         Downloader</a></li>
                 <li class="nav-item"><a class="nav-link" 
-                        style="border-color: rgb(231,231,231);background: #c3d5db;color: rgb(0,0,0);border-radius: 15px;margin-right: 5px;margin-left: 5px;font-weight: bold; font-size: 25px;width: 200px;text-align: center;">URL
-                        Shorter</a></li>
+                        style="border-color: rgb(231,231,231);background: #c3d5db;color: rgb(0,0,0);border-radius: 15px;margin-right: 5px;margin-left: 5px;font-weight: bold; font-size: 25px;width: 200px;text-align: center;">URL Shortener</a></li>
                 <li class="nav-item hvr-sink"><a class="nav-link" href="/about_us"
                         style="border-color: rgb(231,231,231);background: #e3f8ff;color: rgb(0,0,0);border-radius: 15px;margin-right: 5px;margin-left: 5px;font-weight: bold; font-size: 25px;width: 200px;text-align: center;">About Us</a></li>
             </ul>
@@ -33,7 +32,7 @@
     <form action="short_url" method="POST">
         {% csrf_token %}
         <div class="col" style="margin-top: px;margin-bottom: 20px;">
-            <input type="url" name="nm_url" id="url"
+            <input type="url" name="nm_url" id="url" placeholder="https://www.example.com/"
                 style="background: rgb(230,230,230);border-radius: 10px;border-style: none;width: 300px;" required>
         </div>
         <button class="btn btn-primary" value="Submit" type="submit"
