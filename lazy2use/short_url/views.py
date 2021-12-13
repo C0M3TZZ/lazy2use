@@ -12,7 +12,7 @@ import random
 
 def shorturl_main(request): #main
     db.objects.all()
-    return render(request, 'shorturl_main.html')
+    return render(request, 'shorturl_new.html')
 
 def shorten_url(): #url genarator
     letters = string.ascii_lowercase + string.ascii_uppercase
@@ -35,7 +35,7 @@ def shorturl_process(request): #url_process
             db.save(new_url)
             return redirect('displayshorturl', url=short_url)
     else:
-        return render(request, 'shorturl_main.html')
+        return render(request, 'shorturl_new.html')
 
 def display_short_url(request, url): #url result
     return render(request, 'short_rs.html', {'short_url_display':url})
