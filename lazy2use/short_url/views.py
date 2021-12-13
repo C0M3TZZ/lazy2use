@@ -38,7 +38,7 @@ def shorturl_process(request): #url_process
         return render(request, 'shorturl_new.html')
 
 def display_short_url(request, url): #url result
-    return render(request, 'short_rs.html', {'short_url_display':url})
+    return render(request, 'shorturl_out.html', {'short_url_display':url})
 
 def redirection(request, short_url): # redirect 
     long_url = db.objects.filter(surl=short_url).first()

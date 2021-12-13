@@ -20,27 +20,36 @@
                 <li class="nav-item hvr-sink" style="border-radius: 15px;"><a class="nav-link active" href="/youtube"
                         style="margin-left: 5px;margin-right: 5px;color: rgb(0,0,0);background: #e3f8ff;border-radius: 15px;font-weight: bold; font-size: 25px;width: 250px;text-align: center;">Video
                         Downloader</a></li>
-                <li class="nav-item"><a class="nav-link" 
+                <li class="nav-item"><a class="nav-link"
                         style="border-color: rgb(231,231,231);background: #c3d5db;color: rgb(0,0,0);border-radius: 15px;margin-right: 5px;margin-left: 5px;font-weight: bold; font-size: 25px;width: 200px;text-align: center;">URL
                         Shorter</a></li>
                 <li class="nav-item hvr-sink"><a class="nav-link" href="/about_us"
-                        style="border-color: rgb(231,231,231);background: #e3f8ff;color: rgb(0,0,0);border-radius: 15px;margin-right: 5px;margin-left: 5px;font-weight: bold; font-size: 25px;width: 200px;text-align: center;">About Us</a></li>
+                        style="border-color: rgb(231,231,231);background: #e3f8ff;color: rgb(0,0,0);border-radius: 15px;margin-right: 5px;margin-left: 5px;font-weight: bold; font-size: 25px;width: 200px;text-align: center;">About
+                        Us</a></li>
             </ul>
         </div>
     </nav>
-    <p class="d-md-flex justify-content-md-center" style="margin-top: 100px;font-weight: bold;font-size: 20px;">Paste
-        the URL to be shorter<br></p>
+    <p class="d-md-flex justify-content-md-center" style="margin-top: 100px;font-weight: bold;font-size: 20px;">
+        Lazy2Use URL Result<br></p>
     <form action="short_url" method="POST">
         {% csrf_token %}
         <div class="col" style="margin-top: px;margin-bottom: 20px;">
-            <input type="url" name="nm_url" id="url"
+            <input type="url" id="myOutput" value="https://lazy2use.space/{{short_url_display}}"
                 style="background: rgb(230,230,230);border-radius: 10px;border-style: none;width: 300px;" required>
         </div>
-        <button class="btn btn-primary" value="Submit" type="submit"
-            style="padding-bottom: 3px;padding-top: 3px;background: rgb(198,109,109);">Submit</button>
+        <button class="btn btn-primary" type="button" onclick="myFunction()"
+            style="padding-bottom: 3px;padding-top: 3px;background: rgb(198,109,109);">Copy Link</button>
     </form>
+    <script>
+        function myFunction() {
+            var copyText = document.getElementById("myOutput");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); /* For mobile devices */
+            navigator.clipboard.writeText(copyText.value);
+            alert("Copied")
+        }
+    </script>
     <script src="{% static 'url/assets/bootstrap/js/bootstrap.min.js' %}"></script>
-    </form>
 </body>
 
 </html>
