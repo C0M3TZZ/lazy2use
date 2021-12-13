@@ -11,11 +11,8 @@ import random
 # Create your views here.
 
 def shorturl_main(request): #main
-    if shorturl_main:
-        db.objects.all()
-        return render(request, 'shorturl_main.html')
-    else:
-        return render(request, '404.html')
+    db.objects.all()
+    return render(request, 'shorturl_main.html')
 
 def shorten_url(): #url genarator
     letters = string.ascii_lowercase + string.ascii_uppercase

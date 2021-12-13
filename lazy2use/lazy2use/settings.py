@@ -11,7 +11,18 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import json
+from django.core.exceptions import ImproperlyConfigured
 
+with open(os.path.join(BASE_DIR, 'secrets.json')) as secrets_file:
+    secrets = json.load(secrets_file)
+
+def get_secret(setting, secrets=secrets):
+    """Get secret setting or fail with ImproperlyConfigured"""
+    try:
+        return secrets[setting]
+    except KeyError:
+        raise ImproperlyConfigured("Set the {} setting".format(setting))
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -20,8 +31,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '0*u+08xhumvtid=fbpif&d(8%a1lfg_6n$7(w35qe1@vc3h61_'
-
+#SECRET_KEY = '0*u+08xhumvtid=fbpif&d(8%a1lfg_6n$7(w35qe1@vc3h61_'
+SECRET_KEY = get_secret('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -88,8 +99,10 @@ DATABASES = {
             'ENGINE': 'djongo',
             'NAME': 'djangoDB',
             'ENFORCE_SCHEMA': True,
+#            'CLIENT': {
+#                'host': 'mongodb+srv://polawich:XJdCU2Nci8Iyzzyc@lazy2usedb1.pqkay.mongodb.net/test?tlsAllowInvalidCertificates=true'
             'CLIENT': {
-                'host': 'mongodb+srv://polawich:XJdCU2Nci8Iyzzyc@lazy2usedb1.pqkay.mongodb.net/test?tlsAllowInvalidCertificates=true'
+                'host': get_secret('SECRET_DB')
             }  
         }
 }
