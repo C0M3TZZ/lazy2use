@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,38 +6,29 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>About me</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <style>
-        .flex-container1>.row::before {
-            content: "";
-            display: block;
-            width: 2px;
-            height: 100%;
-            background-color: white;
-            position: absolute;
-            left: -180px;
-            top: 0;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static '/about_us/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/about_us/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static '/effect_css/hover-min.css' %}">
 </head>
 
 <body style="border-radius: 15px; background-color: #FAFAFA;font-family: 'Roboto', sans-serif;">
     <nav class="navbar navbar-light navbar-expand-md"
         style="background-image: linear-gradient(to right, #53b8d8, #40b4e5, #3daef2, #50a5fb, #6f9bff);">
-        <div class="container-fluid"><a class="navbar-brand" href="#"
-                style="font-weight: bold;color: rgb(255,255,255); font-size: 50px;">About us</a>
+        <div class="container-fluid"><a class="navbar-brand" href="/"
+                style="font-weight: bold;color: rgb(255,255,255); font-size: 50px;">LAZY2USE</a>
             <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link active" href="#"
+                <li class="nav-item hvr-sink" style="border-radius: 15px;"><a class="nav-link active" href="/youtube"
                         style="margin-left: 5px;margin-right: 5px;color: rgb(0,0,0);background: #e3f8ff;border-radius: 15px;font-weight: bold; font-size: 25px;width: 250px;text-align: center;">Video
                         Downloader</a></li>
-                <li class="nav-item"><a class="nav-link" href="#"
+                <li class="nav-item hvr-sink"><a class="nav-link" href="/url"
                         style="border-color: rgb(231,231,231);background: #e3f8ff;color: rgb(0,0,0);border-radius: 15px;margin-right: 5px;margin-left: 5px;font-weight: bold; font-size: 25px;width: 200px;text-align: center;">URL
                         Shorter</a></li>
+                <li class="nav-item"><a class="nav-link"
+                        style="border-color: rgb(231,231,231);background: #c3d5db;color: rgb(0,0,0);border-radius: 15px;margin-right: 5px;margin-left: 5px;font-weight: bold; font-size: 25px;width: 200px;text-align: center;">About Us</a></li>
             </ul>
         </div>
     </nav>
-    <div class="col" style="margin: 20px;margin-right: 50px;margin-left: 50px;">
+    <div class="col" style="margin: 20px;margin-right: 50px;margin-left: 50px; ">
         <h1 class="text-start" style="font-size: 40px; font-weight: bold; margin: 60px;">Chapchai Sabai Hair.</h1>
     </div>
     <div class="col text-start">
@@ -48,7 +40,7 @@
                         src="https://s3-alpha-sig.figma.com/img/1239/80f7/14171e17e1274c05d433ddb47f351680?Expires=1639958400&Signature=LfGngRVdnS3lgA7CaoECbORIUJCaaDs0X69V0JZgAl2gQb7e3ExqTHwlcJwPvMwXEOtgXFVhVAZML3C5n0-Ysl8u4N-JdBXcUdD6Gk6fSOj8G42setxlBaht3sUYNLG03waVV-EHxp4HAmMgRtcat2zXgvARiNWinUrwoDN5FsurQeHjLFrlWTZqkLtCOJleKqyGJnLxhSjun2Jb-3p8OtWDNcaqtb0r-CXnDloyx2GFNfw~TepEQqL1baiM8bWdSsdBnBNKuy1N0snby9KXhtT65E3Wsaem8VsAFDH8Q7KklN-2UQcEKVeR1uLkcpbMCyOD7~gar7EHcUHslAXd0Q__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA">
                     <p style="font-size: 18px; font-weight: bold;">64070011<br>นายเขมฐิติ หวังทรัพย์ทวี</p>
                 </div>
-                
+
                 <div class="col-md-3 d-flex d-xl-flex align-items-center align-items-xl-center"
                     style="width: 450px;background: #f8f7f7;border-radius: 20px;box-shadow: 0 4px 8px 0 rgba(211, 206, 206, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); margin-left: 20px;">
                     <img class="rounded-circle"
