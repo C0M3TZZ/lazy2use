@@ -2,12 +2,14 @@ import urllib
 from django import http
 from django.http.response import HttpResponse
 from django.shortcuts import render
+from django.shortcuts import redirect
 from pytube import YouTube
 from django.http import FileResponse
 import requests
 import subprocess
 import os
 import pathlib
+import re
 
 # Create your views here.
 
@@ -15,13 +17,19 @@ import pathlib
 
 
 def yt_menu(request):
-    return render(request, 'ytd_menu.html')
-
+    var_url = http.HttpResponse(request.GET.get('url_check')).content.decode()
+    print(var_url)
+    if var_url == "false":
+        return render(request, 'ytd_menu.html', {'url_check' : True})
+    else:
+        return render(request, 'ytd_menu.html')
 
 def yt_download(request):
     var_url = request.GET['url']
-
-    stream_data = YouTube(var_url)
+    try:
+        stream_data = YouTube(var_url)
+    except:
+        return redirect('/youtube/?url_check=false')
     img_url = stream_data.thumbnail_url
     title_url = stream_data.title
     yt_tile = stream_data.author
