@@ -29,7 +29,7 @@ urlpatterns = [
     path('', lazy2use_main.home),
     path('about_us', lazy2use_main.about_us),
     path('beta/', yt.yt_highdefi),
-    path('op/', yt.get_path),
+    path('op/', lazy2use_main.test_web),
     #shorturl
     path('url/', su.shorturl_main),
     path('url/short_url', su.shorturl_process),

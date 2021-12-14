@@ -5,3 +5,6 @@ def home(request):
 
 def about_us(request):
     return render(request, 'about_us.html')
+
+def test_web(request):
+    return render(request, 'test.html')
