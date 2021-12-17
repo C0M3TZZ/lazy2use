@@ -18,3 +18,6 @@ jobs:
           git pull origin main
           sudo systemctl restart django-lazy2use.service
           sudo systemctl status django-lazy2use.service
+          pip uninstall pytube
+          y
+          pip install pytube
